@@ -1,32 +1,13 @@
-public class Point3d {
+public class Point3d extends Point2d {
     //Объявляем переменные - координаты точки
-    private double xCoord;
-    private double yCoord;
     private double zCoord;
     //Конструктор
     public Point3d(double xCoord, double yCoord, double zCoord) {
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
+        super(xCoord, yCoord);
         this.zCoord = zCoord;
     }
 
     //Getters и Setters для каждой переменной(координты)
-
-    public double getxCoord() {
-        return xCoord;
-    }
-
-    public void setxCoord(double xCoord) {
-        this.xCoord = xCoord;
-    }
-
-    public double getyCoord() {
-        return yCoord;
-    }
-
-    public void setyCoord(double yCoord) {
-        this.yCoord = yCoord;
-    }
 
     public double getzCoord() {
         return zCoord;
