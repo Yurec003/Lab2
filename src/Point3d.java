@@ -7,6 +7,10 @@ public class Point3d extends Point2d {
         this.zCoord = zCoord;
     }
 
+    public Point3d(){
+        this(0.0, 0.0, 0.0);
+    }
+
     //Getters и Setters для каждой переменной(координты)
 
     public double getzCoord() {
