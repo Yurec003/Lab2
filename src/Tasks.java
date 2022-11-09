@@ -46,7 +46,7 @@ public class Tasks {
     }
     //num6
     private static int ctoa (char a){
-        return (int) a;
+        return a;
     }
     //num7
     private static int addUpTo(int a){
