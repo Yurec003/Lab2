@@ -6,9 +6,12 @@ import java.util.List;
 public class Task2 {
     public static void main(String[] args) {
         System.out.println("1:" + repeat("mice", 5));
-        System.out.println("2:" + differenceMaxMin("[10, 4, 1, 4, -10, -50, 32, 21]"));
-        System.out.println("3:" + isAvgWhole("[1, 3]"));
-        System.out.println("4:" + cumulativeSum("[1, 2, 3]"));
+        int [] a1 = {10, 4, 1, 4, -10, -50, 32, 21};
+        System.out.println("2:" + differenceMaxMin(a1));
+        int [] a2 = {1, 3};
+        System.out.println("3:" + isAvgWhole(a2));
+        int [] a3 = {1, 2, 3};
+        System.out.println("4:" + cumulativeSum(a3));
         System.out.println("5:" + getDecimalPlaces("43.20"));
         System.out.println("6:" + fibonacci(3));
         System.out.println("7:" + isValid("59001"));
@@ -21,28 +24,21 @@ public class Task2 {
     private static String repeat(String a, int n){
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < a.length(); i++){
-            result.append(String.valueOf(a.charAt(i)).repeat(Math.max(0, n)));
+            result.append(String.valueOf(a.charAt(i)).repeat(n));
         }
         return result.toString();
     }
     //num2
-    private static int differenceMaxMin(String str){
-        int[] array = Arrays.stream(str.substring(1, str.length()-1).split(","))
-                .map(String::trim).mapToInt(Integer::parseInt).toArray();
+    private static int differenceMaxMin(int [] array){
         return Arrays.stream(array).max().getAsInt() - Arrays.stream(array).min().getAsInt();
     }
     //num3
-    private static boolean isAvgWhole(String str){
-        int[] array = Arrays.stream(str.substring(1, str.length()-1).split(","))
-                .map(String::trim).mapToInt(Integer::parseInt).toArray();
-        double mean = (double) Arrays.stream(array).sum() / array.length;
-        return mean % 1 == 0;
+    private static boolean isAvgWhole(int [] array){
+        return (double) Arrays.stream(array).sum() % array.length == 0;
     }
     //num4
-    private static String cumulativeSum(String str){
-        int[] array = Arrays.stream(str.substring(1, str.length()-1).split(","))
-                .map(String::trim).mapToInt(Integer::parseInt).toArray();
-        List<Integer> list = new ArrayList<Integer>();
+    private static String cumulativeSum(int [] array){
+        List<Integer> list = new ArrayList();
         for (int i = 0; i < array.length; i++){
             int result = 0;
             for (int j = 0; j <= i; j++){
@@ -50,11 +46,11 @@ public class Task2 {
             }
             list.add(result);
         }
-        return Arrays.toString(list.toArray());
+        return list.toArray().toString();
     }
     //num5
     private static int getDecimalPlaces(String a){
-        String mainChapterNum = a.substring(a.indexOf("."), a.length() - 1);
+        String mainChapterNum = a.substring(a.indexOf(".") + 1);
         return mainChapterNum.length();
     }
     //num6
@@ -72,6 +68,9 @@ public class Task2 {
     }
     //num7
     private static boolean isValid(String s){
+        if (s.length() != 5){
+            return false;
+        }
         for (int i = 0; i < s.length(); i++){
             char a = s.charAt(i);
             try {
@@ -85,6 +84,11 @@ public class Task2 {
     }
     //num8
     private static boolean isStrangePair(String a, String b){
+        if (a.equals("") && b.equals(""))
+            return true;
+        if (a.equals("") || b.equals("")){
+            return false;
+        }
         return a.charAt(0) == b.charAt(b.length() - 1) && a.charAt(a.length() - 1) == b.charAt(0);
     }
     //num9
